@@ -6,6 +6,9 @@
   </h3>
 </p>
 
+[![PyPi](https://badge.fury.io/py/deepdoctection.svg)](https://pypi.org/project/deepdoctection/) 
+[![Documentation Status](https://readthedocs.org/projects/deepdoctection/badge/?version=latest)](https://deepdoctection.readthedocs.io/en/latest/?badge=latest)
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/deepdoctection/deepdoctection)
 
 **deep**doctection is a Python library that orchestrates document extraction and document layout analysis tasks using deep learning models. It does 
 not implement models but enables you to build pipelines using highly acknowledged libraries for object detection, OCR 
