@@ -97,13 +97,15 @@ class TextractOcrDetector(ObjectDetector):
 
     """
 
-    def __init__(self, text_lines: bool = False) -> None:
+    def __init__(self, text_lines: bool = False, **credential_kwargs: str) -> None:
         """
         :param text_lines: If True, it will return DetectionResults of Text lines as well.
+        :param credential_kwargs: Optional credential parameters, e.g. if AWS CLI is not being used. Will at least
+                                  require: `aws_access_key_id`, `aws_secret_access_key` and possibly `aws_session_token`.
         """
         self.name = "textract"
         self.text_lines = text_lines
-        self.client = boto3.client("textract")
+        self.client = boto3.client("textract", **credential_kwargs)
         if self.text_lines:
             self.categories = {"1": LayoutType.word, "2": LayoutType.line}
         else:
@@ -124,7 +126,7 @@ class TextractOcrDetector(ObjectDetector):
         return [get_aws_requirement(), get_boto3_requirement()]
 
     def clone(self) -> PredictorBase:
-        return self.__class__()
+        return self.__class__(self.text_lines)
 
     def possible_categories(self) -> List[ObjectTypes]:
         if self.text_lines:

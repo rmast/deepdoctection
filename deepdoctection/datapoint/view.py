@@ -107,13 +107,14 @@ class ImageAnnotationBaseView(ImageAnnotation):
                     if isinstance(sub_cat, ContainerAnnotation):
                         return sub_cat.value
                     return int(sub_cat.category_id)
+            return getattr(self.image, item)
         return None
 
     def get_attribute_names(self) -> Set[str]:  # pylint: disable=R0201
         """
         :return: A set of registered attributes. When sub classing modify this method accordingly.
         """
-        return {"bbox"}
+        return {"bbox","document_id","image_id"}
 
     @classmethod
     def from_dict(cls, **kwargs: JsonDict) -> "ImageAnnotationBaseView":
@@ -494,7 +495,7 @@ class Page(Image):
     @property
     def chunks(self) -> List[Tuple[str, str, str, str, str, str]]:
         """
-        :return: Returns a "chunk" of a layout element or a table as 6-tuple containing
+        :return: Returns chunks of a layout element or a table as 6-tuple containing
 
                     - document id
                     - image id
