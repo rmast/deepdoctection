@@ -513,6 +513,7 @@ class Page(Image):
 
                     - document id
                     - image id
+                    - annotation_id
                     - reading order
                     - category name
                     - text string

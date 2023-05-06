@@ -356,8 +356,8 @@ def _reading_columns(
     # we are rounding values we want to sort
     for comp in connected_components:
         for col in comp["column"]:
-            col["left"] = round(col["left"], 2)
-            col["top"] = round(col["top"], 2)
+            col["left"] = round(col["left"], 1)
+            col["top"] = round(col["top"], 1)
         comp["column"].sort(key=lambda x: (x["left"], x["top"]))
 
     # finally, sorting connected components by increasing y-value
@@ -442,7 +442,7 @@ class TextOrderService(PipelineComponent):
         self._text_block_names = text_block_names
         self._text_containers_to_text_block = text_containers_to_text_block
         self.starting_point_tolerance = 0.05
-        self.height_tolerance = 2.0
+        self.height_tolerance = 1.0
         self.ignore_category_when_building_column_blocks = [LayoutType.table]
         self._init_sanity_checks()
         super().__init__("text_order")
